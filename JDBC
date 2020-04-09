@@ -1,0 +1,25 @@
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+public class JDBC {
+        public static void main(final String[] arg){
+            Connection conexao = null;
+            try{
+                class.forName("com.mysql.jdbc.Driver");
+                final String url = "jdbc:mysql://127.0.0.1:3306/nome_do_banco";
+                final String usuario = "usuario", senha = "senha";
+                
+                conexao = DriverManager.getConnection(url, usuario, senha);
+            }catch (final ClassNotFoundException ex){
+                System.out.println("Falha na carga do Driver JDBC!");
+            }catch (final SQLException ex){
+                System.out.println("Falha de conexão com a base de dados!");
+            }finally
+                try{
+                    conexao.close();
+                }catch(final Exception ex){
+                    ex.printStackTrace();
+                }
+        }
+}
